@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtualenv
+venv/
+.venv/
+env/
+ENV/
+
+# Testing & linting
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Node.js
+node_modules/
+
+# Build artifacts
+build/
+dist/
+*.whl
+
+# Excel data files (keep .env.example but not xlsx with real data)
+*.xlsx
+
+# Logs / temporarios
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
