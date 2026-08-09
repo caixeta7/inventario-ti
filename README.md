@@ -125,3 +125,4 @@ SECRET_KEY=inventario-ti-secret-key-2026
 ## 📝 Licença
 
 Uso interno — Machado Associados / TI.
+<!-- sync test -->
