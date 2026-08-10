@@ -10,7 +10,7 @@ function useDebounce(value, delay = 300) {
 }
 
 function formatDate(dateStr) {
-  if (!dateStr) return '\u2014';
+  if (!dateStr) return '—';
   try {
     const [y, m, d] = dateStr.split('-');
     if (y && m && d) return `${d}/${m}/${y}`;
@@ -129,7 +129,7 @@ function App() {
       setAtivos(json.data || []);
       setPagination(json.pagination || { page: 1, pageSize: 50, total: 0, totalPages: 1 });
     } catch (err) {
-      setError('N\u00e3o foi poss\u00edvel carregar os dados.');
+      setError('Não foi possível carregar os dados.');
     } finally {
       setLoading(false);
     }
@@ -216,8 +216,8 @@ function App() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">Invent\u00e1rio de TI</h1>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Gest\u00e3o multi-abas com sync Excel</p>
+              <h1 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">Inventário de TI</h1>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Gestão multi-abas com sync Excel</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -230,7 +230,7 @@ function App() {
               </div>
             )}
             <button onClick={() => setDarkMode(!darkMode)} className="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              {darkMode ? '\u2600\ufe0f' : '\ud83c\udf19'}
+              {darkMode ? '☀️' : '🌙'}
             </button>
           </div>
         </div>
@@ -252,7 +252,7 @@ function App() {
                 className={`px-1.5 py-2 text-xs rounded-r-xl border-l border-white/20 transition-all ${activeSheet === sheet.name && !globalSearch ? 'bg-brand-600 text-white/80 hover:text-white' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'}`}
                 title="Editar aba"
               >
-                \u270e
+                ✎
               </button>
             </div>
           ))}
@@ -268,7 +268,7 @@ function App() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col gap-4">
 
-        {/* BUSCA + TOGGLE GLOBAL + BOT\u00c3O NOVO */}
+        {/* BUSCA + TOGGLE GLOBAL + BOTÃO NOVO */}
         <div className="bg-white dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-3">
           <div className="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center">
             <div className="relative flex-1">
@@ -279,7 +279,7 @@ function App() {
                 placeholder={globalSearch ? 'Buscar em TODAS as abas...' : `Buscar em ${displayLabel}...`}
                 className="w-full pl-4 pr-10 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
               />
-              {search && <button onClick={() => setSearch('')} className="absolute right-3 top-3 text-slate-400">\u2715</button>}
+              {search && <button onClick={() => setSearch('')} className="absolute right-3 top-3 text-slate-400">✕</button>}
             </div>
             <div className="flex items-center gap-3">
               <label className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 cursor-pointer">
@@ -296,7 +296,7 @@ function App() {
             </div>
           </div>
 
-          {/* FILTROS (s\u00f3 em busca local) */}
+          {/* FILTROS (só em busca local) */}
           {!globalSearch && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-100 dark:border-slate-700/50">
               <FilterSelect label="Owner" value={filterOwner} onChange={v => { setFilterOwner(v); setPage(1); }} options={filterOptions.owners} placeholder="Todos os Owners" />
@@ -317,12 +317,12 @@ function App() {
                   {globalSearch && <Th sortKey="sheet_name" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Aba</Th>}
                   <Th sortKey="equipamento" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Equipamento</Th>
                   <Th sortKey="marca" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Marca / Modelo</Th>
-                  <Th sortKey="usuario" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Usu\u00e1rio</Th>
+                  <Th sortKey="usuario" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Usuário</Th>
                   <Th sortKey="owner" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Owner</Th>
                   <Th sortKey="contrato" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Contrato</Th>
                   <Th sortKey="localidade" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Localidade</Th>
-                  <Th sortKey="patrimonio" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Patrim\u00f4nio</Th>
-                  {!globalSearch && <th className="px-4 py-3.5 text-right font-semibold">A\u00e7\u00f5es</th>}
+                  <Th sortKey="patrimonio" currentSort={sortBy} dir={sortDir} onSort={handleSort}>Patrimônio</Th>
+                  {!globalSearch && <th className="px-4 py-3.5 text-right font-semibold">Ações</th>}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
@@ -347,26 +347,26 @@ function App() {
                       <tr key={item.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
                         {globalSearch && <td className="px-4 py-3.5"><span className="px-2 py-1 rounded-md text-xs font-medium bg-brand-50 text-brand-600 dark:bg-brand-950/40 dark:text-brand-400">{itemSheet ? itemSheet.display_name : item.sheet_name}</span></td>}
                         <td className="px-4 py-3.5 font-medium text-slate-900 dark:text-white">
-                          <div>{item.equipamento || '\u2014'}</div>
+                          <div>{item.equipamento || '—'}</div>
                           {item.hostname && <span className="text-xs text-slate-400 font-mono">{item.hostname}</span>}
                         </td>
                         <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300">
-                          <div>{item.marca || '\u2014'}</div>
+                          <div>{item.marca || '—'}</div>
                           <div className="text-xs text-slate-400">{item.modelo || ''}</div>
                         </td>
                         <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300">
-                          <div>{item.usuario || '\u2014'}</div>
+                          <div>{item.usuario || '—'}</div>
                           {item.area && <span className="text-xs text-slate-400">{item.area}</span>}
                         </td>
-                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 text-xs">{item.owner || '\u2014'}</td>
-                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 text-xs font-mono">{item.contrato || '\u2014'}</td>
-                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300">{item.localidade || '\u2014'}</td>
-                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 font-mono text-xs">{item.patrimonio || '\u2014'}</td>
+                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 text-xs">{item.owner || '—'}</td>
+                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 text-xs font-mono">{item.contrato || '—'}</td>
+                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300">{item.localidade || '—'}</td>
+                        <td className="px-4 py-3.5 text-slate-600 dark:text-slate-300 font-mono text-xs">{item.patrimonio || '—'}</td>
                         {!globalSearch && (
                           <td className="px-4 py-3.5 text-right">
                             <div className="inline-flex items-center gap-1">
-                              <button onClick={() => setFormTarget(item)} className="p-1.5 hover:text-brand-600 rounded-lg transition-colors" title="Editar">\u270f\ufe0f</button>
-                              <button onClick={() => setDeleteTarget(item)} className="p-1.5 hover:text-rose-600 rounded-lg transition-colors" title="Remover">\ud83d\uddd1\ufe0f</button>
+                              <button onClick={() => setFormTarget(item)} className="p-1.5 hover:text-brand-600 rounded-lg transition-colors" title="Editar">📝</button>
+                              <button onClick={() => setDeleteTarget(item)} className="p-1.5 hover:text-rose-600 rounded-lg transition-colors" title="Remover">🗑️</button>
                             </div>
                           </td>
                         )}
@@ -382,7 +382,7 @@ function App() {
             <div className="flex items-center gap-2">
               <button disabled={page <= 1} onClick={() => setPage(page - 1)} className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 disabled:opacity-40">Anterior</button>
               <span>{page} / {pagination.totalPages}</span>
-              <button disabled={page >= pagination.totalPages} onClick={() => setPage(page + 1)} className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 disabled:opacity-40">Pr\u00f3xima</button>
+              <button disabled={page >= pagination.totalPages} onClick={() => setPage(page + 1)} className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 disabled:opacity-40">Próxima</button>
             </div>
           </div>
         </div>
@@ -400,12 +400,12 @@ function App() {
         />
       )}
 
-      {/* MODAL CONFIRMA\u00c7\u00c3O EXCLUS\u00c3O DE ABA */}
+      {/* MODAL CONFIRMAÇÃO EXCLUSÃO DE ABA */}
       {deleteSheetTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl">
             <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Remover Aba</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mb-6">Tem certeza? Todos os registros da aba "{deleteSheetTarget.display_name}" ser\u00e3o removidos permanentemente, junto com a aba na planilha Excel.</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-6">Tem certeza? Todos os registros da aba "{deleteSheetTarget.display_name}" serão removidos permanentemente, junto com a aba na planilha Excel.</p>
             <div className="flex justify-end gap-3">
               <button onClick={() => setDeleteSheetTarget(null)} className="px-4 py-2 text-sm font-semibold text-slate-600 rounded-xl">Cancelar</button>
               <button onClick={handleDeleteSheet} className="px-4 py-2 text-sm font-semibold text-white bg-rose-600 rounded-xl">Remover tudo</button>
@@ -414,16 +414,16 @@ function App() {
         </div>
       )}
 
-      {/* MODAL FORMUL\u00c1RIO ATIVO */}
+      {/* MODAL FORMULÁRIO ATIVO */}
       {formTarget && (
         <FormModal target={formTarget} activeSheet={activeSheet} onClose={() => setFormTarget(null)} onSubmit={handleFormSubmit} />
       )}
 
-      {/* MODAL CONFIRMA\u00c7\u00c3O EXCLUS\u00c3O ATIVO */}
+      {/* MODAL CONFIRMAÇÃO EXCLUSÃO ATIVO */}
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Confirmar Exclus\u00e3o</h3>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Confirmar Exclusão</h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-6">Remover "{deleteTarget.equipamento || deleteTarget.patrimonio}" da aba {displayLabel}?</p>
             <div className="flex justify-end gap-3">
               <button onClick={() => setDeleteTarget(null)} className="px-4 py-2 text-sm font-semibold text-slate-600">Cancelar</button>
@@ -456,7 +456,7 @@ function Th({ children, sortKey, currentSort, dir, onSort }) {
   const isCurrent = currentSort === sortKey;
   return (
     <th onClick={() => onSort(sortKey)} className="px-4 py-3.5 cursor-pointer select-none hover:text-slate-900 dark:hover:text-white">
-      <div className="flex items-center gap-1">{children}{isCurrent && <span className="text-brand-500">{dir === 'asc' ? '\u2191' : '\u2193'}</span>}</div>
+      <div className="flex items-center gap-1">{children}{isCurrent && <span className="text-brand-500">{dir === 'asc' ? '↑' : '↓'}</span>}</div>
     </th>
   );
 }
@@ -476,15 +476,15 @@ function SheetModal({ mode, sheet, onClose, onCreate, onRename, onDelete }) {
       <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl max-w-md w-full overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
           <h2 className="text-base font-bold text-slate-900 dark:text-white">{mode === 'create' ? 'Nova Aba' : 'Editar Aba'}</h2>
-          <button onClick={onClose} className="text-slate-400">\u2715</button>
+          <button onClick={onClose} className="text-slate-400">✕</button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nome t\u00e9cnico (no Excel)</label>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nome técnico (no Excel)</label>
             <input type="text" value={name} onChange={e => setName(e.target.value)} required placeholder="Ex: Ativos2" className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nome de exibi\u00e7\u00e3o (na interface)</label>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nome de exibição (na interface)</label>
             <input type="text" value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="Ex: Ativos SP" className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
           </div>
           <div className="flex justify-between gap-3 pt-2">
@@ -514,7 +514,7 @@ function FormModal({ target, activeSheet, onClose, onSubmit }) {
       <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
           <h2 className="text-base font-bold text-slate-900 dark:text-white">{isNew ? 'Novo Registro' : 'Editar Registro'}</h2>
-          <button onClick={onClose} className="text-slate-400">\u2715</button>
+          <button onClick={onClose} className="text-slate-400">✕</button>
         </div>
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -524,21 +524,21 @@ function FormModal({ target, activeSheet, onClose, onSubmit }) {
             <Input label="Owner" value={values.owner} onChange={v => handleChange('owner', v)} />
             <Input label="Contrato" value={values.contrato} onChange={v => handleChange('contrato', v)} />
             <Input label="Localidade" value={values.localidade} onChange={v => handleChange('localidade', v)} />
-            <Input label="Patrim\u00f4nio" value={values.patrimonio} onChange={v => handleChange('patrimonio', v)} />
-            <Input label="Usu\u00e1rio" value={values.usuario} onChange={v => handleChange('usuario', v)} />
+            <Input label="Patrimônio" value={values.patrimonio} onChange={v => handleChange('patrimonio', v)} />
+            <Input label="Usuário" value={values.usuario} onChange={v => handleChange('usuario', v)} />
             <Input label="Hostname" value={values.hostname} onChange={v => handleChange('hostname', v)} />
             <Input label="Service Tag" value={values.service_tag} onChange={v => handleChange('service_tag', v)} />
-            <Input label="Mem\u00f3ria" value={values.memoria} onChange={v => handleChange('memoria', v)} />
+            <Input label="Memória" value={values.memoria} onChange={v => handleChange('memoria', v)} />
             <Input label="HD / SSD" value={values.hd} onChange={v => handleChange('hd', v)} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Input type="date" label="Aquisi\u00e7\u00e3o" value={values.aquisicao} onChange={v => handleChange('aquisicao', v)} />
+            <Input type="date" label="Aquisição" value={values.aquisicao} onChange={v => handleChange('aquisicao', v)} />
             <Input type="date" label="Venc. Garantia" value={values.vencimento_garantia} onChange={v => handleChange('vencimento_garantia', v)} />
-            <Input type="date" label="In\u00edcio Contrato" value={values.inicio_contrato} onChange={v => handleChange('inicio_contrato', v)} />
+            <Input type="date" label="Início Contrato" value={values.inicio_contrato} onChange={v => handleChange('inicio_contrato', v)} />
             <Input type="date" label="Venc. Contrato" value={values.vencimento_contrato} onChange={v => handleChange('vencimento_contrato', v)} />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Observa\u00e7\u00f5es</label>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Observações</label>
             <textarea rows="3" value={values.observacoes || ''} onChange={e => handleChange('observacoes', e.target.value)} className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
           </div>
           <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
